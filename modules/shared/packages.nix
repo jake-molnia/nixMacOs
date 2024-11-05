@@ -30,4 +30,6 @@ with pkgs; [
   zsh-autosuggestions
   starship
   tlrc
+  neovim
+  eza
 ]

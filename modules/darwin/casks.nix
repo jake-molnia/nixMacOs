@@ -6,7 +6,7 @@ _:
   "firefox"                   	# Popular web browser, alternative to Safari
   "git-credential-manager"    	# Secure Git credentials storage
   "tempbox"                   	# Temporary email address generator
-  #"arc"                       	# Modern web browser with built-in split view and spaces
+  "arc"                       	# Modern web browser with built-in split view and spaces
   "arduino-ide"               	# IDE for Arduino development
   "battery-buddy"            	# Battery health monitoring and optimization
   "betterdisplay"            	# External display management and configuration
@@ -24,4 +24,6 @@ _:
   "zoom"                    	# Video conferencing software
   "microsoft-teams"         	# Microsoft Teams collaboration platform
   "microsoft-remote-desktop"	# Remote access to Windows PCs
+  "alt-tab"
+  "microsoft-outlook"
 ]

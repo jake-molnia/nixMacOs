@@ -35,25 +35,18 @@ let user = "jake"; in
   environment.systemPackages = with pkgs; [
   ] ++ (import ../../modules/shared/packages.nix { inherit pkgs; });
 
-  launchd.user.agents.emacs.path = [ config.environment.systemPath ];
-  launchd.user.agents.emacs.serviceConfig = {
-    KeepAlive = true;
-    ProgramArguments = [
-      "/bin/sh"
-      "-c"
-      "/bin/wait4path ${pkgs.emacs}/bin/emacs && exec ${pkgs.emacs}/bin/emacs --fg-daemon"
-    ];
-    StandardErrorPath = "/tmp/emacs.err.log";
-    StandardOutPath = "/tmp/emacs.out.log";
-  };
-
   system = {
     stateVersion = 4;
 
     defaults = {
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;         # Show hidden files
         ApplePressAndHoldEnabled = false;
+        AppleTemperatureUnit = "Celsius";
+        NSAutomaticWindowAnimationsEnabled = false; # disables animations
+        NSTableViewDefaultSizeMode = 1;   # finder sidebar icons size
+        PMPrintingExpandedStateForPrint = true; # expanded print pannel by default
 
         KeyRepeat = 2; # Values: 120, 90, 60, 30, 12, 6, 2
         InitialKeyRepeat = 15; # Values: 120, 94, 68, 35, 25, 15
@@ -61,6 +54,8 @@ let user = "jake"; in
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.sound.beep.volume" = 0.0;
         "com.apple.sound.beep.feedback" = 0;
+        AppleICUForce24HourTime = true;     # Enables 24-hour clock format
+        AppleInterfaceStyle = "Dark";
       };
 
       dock = {
@@ -73,17 +68,41 @@ let user = "jake"; in
 
       finder = {
         _FXShowPosixPathInTitle = false;
+        FXDefaultSearchScope = "SCcf";   # sets mac search scope to current folder
+        FXEnableExtensionChangeWarning = false; # no warning when changing extension of file
+        FXPreferredViewStyle = "clmv";      # default view to column view
+        NewWindowTarget = "Home";
+        ShowPathbar = true; 
       };
 
       trackpad = {
         Clicking = true;
         TrackpadThreeFingerDrag = true;
       };
+
+      menuExtraClock = {
+        Show24Hour = true;
+        ShowDate = 2;
+        ShowDayOfMonth = false; 
+        ShowDayOfWeek = false; 
+        ShowSeconds = false; 
+      };
+
+      #universalaccess = {
+      #  reduceMotion = true;
+      #};
+
+      SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+      WindowManager.EnableStandardClickToShowDesktop = false;
+
     };
+    startup.chime = false; # becuase fuck that
   };
 
   # Font Configuration
   fonts.packages = [
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })  # Install Hack Nerd Font for terminal use
   ];
+
+  security.pam.enableSudoTouchIdAuth = true;    # enable fingerprint for sudo
 }
