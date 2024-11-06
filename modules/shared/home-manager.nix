@@ -9,7 +9,7 @@ let name = "Jacob Molnia";
     enable = true;
     userSettings = {
       "terminal.integrated.fontFamily" = "Hack";
-      "workbench.colorTheme" = "Gruvbox Dark Hard";
+      "workbench.colorTheme" = "Gruvbox Dark Medium";
       "workbench.sideBar.location" = "left";
       "editor.minimap.enabled" = false;
       "workbench.iconTheme" = "material-icon-theme";
@@ -23,14 +23,16 @@ let name = "Jacob Molnia";
       bbenoist.nix                            # Nix
 
       # AI
-      #visualstudioexptteam.vscodeintellicode  
-      #visualstudioexptteam.intellicode-api-usage-examples
+      visualstudioexptteam.vscodeintellicode  
+      visualstudioexptteam.intellicode-api-usage-examples
       #github.copilot
 
       # Themes and UI
       pkief.material-icon-theme
       jdinhlife.gruvbox
       #throwbly.focus
+      #wayou.vscode-todo-highlight
+
 
       # Java Tools
       vscjava.vscode-java-pack
@@ -63,14 +65,21 @@ let name = "Jacob Molnia";
     initExtraFirst = ''
       # Path Configuration
       export PATH="$PATH:/Users/jake/.local/bin"
-      export ZSH="$HOME/.oh-my-zsh"
+      export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
 
       # Theme Configuration
       ZSH_THEME="" # Disabled to use Starship instead
 
-      # Oh My Zsh Configuration
-      ENABLE_CORRECTION="true"
-      #source $ZSH/oh-my-zsh.sh
+      # Plugin Configuration
+      plugins=(
+          git
+          ssh
+          autoenv
+      )
+
+      source $ZSH/oh-my-zsh.sh
+      source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
       # Custom Aliases
       alias code="code -n"
@@ -126,7 +135,7 @@ let name = "Jacob Molnia";
         };
         size = lib.mkMerge [
           (lib.mkIf pkgs.stdenv.hostPlatform.isLinux 10)
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin 10)
+          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin 12)
         ];
       };
 
@@ -438,5 +447,17 @@ let name = "Jacob Molnia";
         vimcmd_visual_symbol = "[](bold fg:color_yellow)";
       };
     };
+  };
+
+  neovim = {
+    enable = true; 
+
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+
+    extraLuaConfig = ''
+      ${builtins.readFile ./config/nvim/init.lua}
+    '';
   };
 }

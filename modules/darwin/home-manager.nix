@@ -43,6 +43,11 @@ in
       "XCode" = 497799835;                     		# Apple's IDE for iOS/macOS development
       "Goodnotes" = 1444383602;                 	# Digital note-taking app
     };
+
+    brews = [
+      "zsh-syntax-highlighting"
+      "zsh-autosuggestions"
+    ];
   };
 
   # Enable home-manager

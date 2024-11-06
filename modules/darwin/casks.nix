@@ -26,4 +26,7 @@ _:
   "microsoft-remote-desktop"	# Remote access to Windows PCs
   "alt-tab"
   "microsoft-outlook"
+  "smoothscroll"
+  "logi-options+"
+  "utm"
 ]

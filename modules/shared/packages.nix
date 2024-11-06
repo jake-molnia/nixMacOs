@@ -19,17 +19,20 @@ with pkgs; [
   tmux
   unrar
   unzip
+  ranger
+  oh-my-zsh
 
   # Python packages
   python3
+  pipx
 
   # To be sorted
   devenv
   vscode
-  zsh-syntax-highlighting
-  zsh-autosuggestions
   starship
   tlrc
-  neovim
+  #neovim ### Dont know why its still installed but it works 
   eza
+  micromamba
+  direnv
 ]
