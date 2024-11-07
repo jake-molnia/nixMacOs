@@ -903,7 +903,7 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 		},
-		cmd = "nt",
+		cmd = "Nt",
 		keys = {
 			{ "\\", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
 		},

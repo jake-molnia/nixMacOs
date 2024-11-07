@@ -29,4 +29,5 @@ _:
   "smoothscroll"
   "logi-options+"
   "utm"
+  "obsidian"
 ]

@@ -42,6 +42,7 @@ in
       "TickTick" = 966085870;                   	# Task management and to-do lists
       "XCode" = 497799835;                     		# Apple's IDE for iOS/macOS development
       "Goodnotes" = 1444383602;                 	# Digital note-taking app
+      "Amphetamine" = 937984704;
     };
 
     brews = [
