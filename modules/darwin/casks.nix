@@ -18,7 +18,7 @@ _:
   "maccy"                   	# Clipboard manager for macOS
   "raycast"                 	# Spotlight replacement with extended features
   "spotify"                 	# Music streaming service
-  "rectangle"               	# Window management tool
+  #"rectangle"               	# Window management tool
   "slack"                   	# Business communication platform
   "discord"                 	# Voice, video, and text chat platform
   "zoom"                    	# Video conferencing software
@@ -28,6 +28,5 @@ _:
   "logi-options+"
   "utm"
   "obsidian"
-  #"sketchybar"
   "aerospace"
 ]
