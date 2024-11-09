@@ -37,7 +37,7 @@ fi
 mkdir -p ./config
 
 # Install Xcode Command Line Tools if not installed
-if ! command_exists xcode-select; then
+if ! command_exists git; then
     print_status "Installing Xcode Command Line Tools..."
     xcode-select --install
     

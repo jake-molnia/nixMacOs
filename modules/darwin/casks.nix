@@ -29,4 +29,5 @@ _:
   "utm"
   "obsidian"
   "aerospace"
+  "parallels"
 ]
