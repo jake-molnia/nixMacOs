@@ -15,52 +15,72 @@ let name = "Jacob Molnia";
       "workbench.iconTheme" = "material-icon-theme";
     };
     extensions = with pkgs.vscode-extensions; [
-      # Programming Languages
-      llvm-vs-code-extensions.vscode-clangd   # C/C++
-      ms-python.python                        # Python
-      rust-lang.rust-analyzer                 # Rust
-      redhat.java                             # Java
-      bbenoist.nix                            # Nix
+    # Programming Languages
+    llvm-vs-code-extensions.vscode-clangd
+    ms-python.python
+    rust-lang.rust-analyzer
+    redhat.java
+    bbenoist.nix
 
-      # AI
-      visualstudioexptteam.vscodeintellicode  
-      visualstudioexptteam.intellicode-api-usage-examples
-      #github.copilot
+    # AI
+    visualstudioexptteam.vscodeintellicode
+    visualstudioexptteam.intellicode-api-usage-examples
 
-      # Themes and UI
-      pkief.material-icon-theme
-      jdinhlife.gruvbox
-      #throwbly.focus
-      #wayou.vscode-todo-highlight
+    # Themes and UI
+    pkief.material-icon-theme
+    jdinhlife.gruvbox
+    tamasfe.even-better-toml
 
+    # Java Tools
+    vscjava.vscode-java-pack
+    vscjava.vscode-java-debug
+    vscjava.vscode-java-dependency
+    vscjava.vscode-java-test
+    vscjava.vscode-gradle
+    vscjava.vscode-maven
 
-      # Java Tools
-      vscjava.vscode-java-pack
-      vscjava.vscode-java-debug
-      vscjava.vscode-java-dependency
-      vscjava.vscode-java-test
-      vscjava.vscode-gradle
-      vscjava.vscode-maven
-
-      # C/C++ Tools
-      #ms-vscode.cpptools
-      #ms-vscode.cpptools-extension-pack
-      #ms-vscode.cpptools-themes
-      #ms-vscode.cmake-tools
-      #twxs.cmake
-      #xaver.clang-format
-
-      # Remote Tools
-      #ms-vscode-remote.remote-ssh-edit
-      #ms-vscode.remote-explorer
-      #ms-vscode.remote-server
-      ms-vscode-remote.remote-ssh
+    # Remote Tools
+    ms-vscode-remote.remote-ssh
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    # C/C++ Tools
+    {
+      name = "cpptools";
+      publisher = "ms-vscode";
+      version = "1.17.5";
+      sha256 = "G2sWrUzDe1GBQZn65pD8c71ojaNI1djCcSxaQFGvYoU=";
+    }
+    {
+      name = "cpptools-themes";
+      publisher = "ms-vscode";
+      version = "2.0.0";
+      sha256 = "YWA5UsA+cgvI66uB9d9smwghmsqf3vZPFNpSCK+DJxc=";
+    }
+    {
+      name = "cmake-tools";
+      publisher = "ms-vscode";
+      version = "1.16.32";
+      sha256 = "TtSKz7cdSdhpaTiY1sT7A2fFknCtbpKb8czxGmaZuFU=";
+    }
+    {
+      name = "cmake";
+      publisher = "twxs";
+      version = "0.0.17";
+      sha256 = "CFiva1AO/oHpszbpd7lLtDzbv1Yi55yQOQPP/kCTH4Y=";
+    }
+    # Remote Tools
+    {
+      name = "remote-ssh-edit";
+      publisher = "ms-vscode-remote";
+      version = "0.86.0";
+      sha256 = "JsbaoIekUo2nKCu+fNbGlh5d1Tt/QJGUuXUGP04TsDI=";
+    }
     ];
   };
 
   zsh = {
     enable = true;
     autocd = false;
+    enableCompletion = true;
 
     initExtraFirst = ''
       # Path Configuration
@@ -74,7 +94,6 @@ let name = "Jacob Molnia";
       plugins=(
           git
           ssh
-          autoenv
       )
 
       source $ZSH/oh-my-zsh.sh
@@ -196,12 +215,15 @@ let name = "Jacob Molnia";
     matchBlocks = {
       "github.com" = {
         identitiesOnly = true;
+        extraOptions = {
+          AddKeysToAgent = "yes";
+        };
         identityFile = [
           (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-            "/home/${user}/.ssh/id_github"
+            "/home/${user}/.ssh/keys/id_github"
           )
           (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-            "/Users/${user}/.ssh/id_github"
+            "/Users/${user}/.ssh/keys/id_github"
           )
         ];
       };
@@ -470,7 +492,7 @@ let name = "Jacob Molnia";
     vimdiffAlias = true;
 
     extraLuaConfig = ''
-      ${builtins.readFile ./config/nvim/init.lua}
+      ${builtins.readFile ../config/nvim/init.lua}
     '';
   };
 }

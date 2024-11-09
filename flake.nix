@@ -23,13 +23,21 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-nikitabobko = {
+        url = "github:nikitabobko/homebrew-tap";
+        flake = false;
+    };
+    homebrew-FelixKratz = {
+      url = "github:FelixKratz/homebrew-formulae";
+      flake = false;
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-nikitabobko, homebrew-FelixKratz, home-manager, nixpkgs, disko } @inputs:
     let
       user = "jake";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -91,8 +99,10 @@
                   "homebrew/homebrew-core" = homebrew-core;
                   "homebrew/homebrew-cask" = homebrew-cask;
                   "homebrew/homebrew-bundle" = homebrew-bundle;
+                  "nikitabobko/tap" = homebrew-nikitabobko;
+                  "FelixKratz/formulae" = homebrew-FelixKratz;
                 };
-                mutableTaps = false;
+                mutableTaps = true;
                 autoMigrate = true;
               };
             }

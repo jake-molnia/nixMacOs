@@ -8,8 +8,6 @@ let user = "jake"; in
     ../../modules/shared
   ];
 
-  services.nix-daemon.enable = true;
-
   nix = {
     package = pkgs.nix;
     settings = {
@@ -47,6 +45,7 @@ let user = "jake"; in
         NSAutomaticWindowAnimationsEnabled = false; # disables animations
         NSTableViewDefaultSizeMode = 1;   # finder sidebar icons size
         PMPrintingExpandedStateForPrint = true; # expanded print pannel by default
+        _HIHideMenuBar = false; # Whether to hide menu bar
 
         KeyRepeat = 2; # Values: 120, 90, 60, 30, 12, 6, 2
         InitialKeyRepeat = 15; # Values: 120, 94, 68, 35, 25, 15
@@ -54,7 +53,7 @@ let user = "jake"; in
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.sound.beep.volume" = 0.0;
         "com.apple.sound.beep.feedback" = 0;
-        "com.apple.swipescrolldirection" = false;
+        "com.apple.swipescrolldirection" = true;
         AppleICUForce24HourTime = true;     # Enables 24-hour clock format
         AppleInterfaceStyle = "Dark";
       };

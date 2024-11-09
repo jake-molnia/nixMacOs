@@ -48,6 +48,13 @@ in
     brews = [
       "zsh-syntax-highlighting"
       "zsh-autosuggestions"
+      "sketchybar"
+    ];
+
+    taps = [
+      "homebrew/cask"
+      "nikitabobko/tap"
+      "FelixKratz/formulae"
     ];
   };
 
@@ -65,10 +72,27 @@ in
         stateVersion = "23.11";
       };
       programs = {} // import ../shared/home-manager.nix { inherit config pkgs lib; };
-
+      
+      # Additional config for apps not supported by homemanager directly
+      xdg = {
+        enable = true;
+        configFile = {
+          "aerospace/aerospace.toml".source = ../config/aerospace/aerospace.toml;
+          "sketchybar/plugins/".source = ../config/sketchybar/plugins;
+        };
+      };
       # Marked broken Oct 20, 2022 check later to remove this
       # https://github.com/nix-community/home-manager/issues/3344
       manual.manpages.enable = false;
+    };
+  };
+
+  services = { 
+    nix-daemon.enable = true;
+    sketchybar = {
+      enable = false;
+      config = ''
+       ${builtins.readFile ../../modules/config/sketchybar/sketchybarrc}'';
     };
   };
 

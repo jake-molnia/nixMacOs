@@ -23,11 +23,11 @@ _:
   "discord"                 	# Voice, video, and text chat platform
   "zoom"                    	# Video conferencing software
   "microsoft-teams"         	# Microsoft Teams collaboration platform
-  "microsoft-remote-desktop"	# Remote access to Windows PCs
   "alt-tab"
-  "microsoft-outlook"
   "smoothscroll"
   "logi-options+"
   "utm"
   "obsidian"
+  #"sketchybar"
+  "aerospace"
 ]
